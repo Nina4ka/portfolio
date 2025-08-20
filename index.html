@@ -47,10 +47,11 @@
     <!-- Навигационная панель -->
     <header class="bg-gray-800 text-white p-4 fixed top-0 left-0 w-full z-10 shadow-lg rounded-b-lg">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="#home" class="text-2xl font-bold">Имя Фамилия Дизайнер</a>
+            <a href="#home" class="text-2xl font-bold">Лара Дергачева</a>
             <nav class="hidden md:flex space-x-6 nav-links">
-                <a href="#collections" class="hover:text-gray-300 transition duration-300">Коллекции</a>
-                <a href="#sketches" class="hover:text-gray-300 transition duration-300">Эскизы</a>
+                <a href="#about" class="hover:text-gray-300 transition duration-300">Обо мне</a>
+                <a href="#collections" class="hover:text-gray-300 transition duration-300">Проекты</a>
+                <a href="#gallery" class="hover:text-gray-300 transition duration-300">Галерея</a>
                 <a href="#contacts" class="hover:text-gray-300 transition duration-300">Контакты</a>
             </nav>
             <!-- Мобильное меню (гамбургер-иконка) -->
@@ -62,8 +63,9 @@
         </div>
         <!-- Выпадающее меню для мобильных устройств -->
         <div id="mobile-menu" class="hidden md:hidden bg-gray-700 mt-4 rounded-md">
-            <a href="#collections" class="block py-2 px-4 hover:bg-gray-600 rounded-md">Коллекции</a>
-            <a href="#sketches" class="block py-2 px-4 hover:bg-gray-600 rounded-md">Эскизы</a>
+            <a href="#about" class="block py-2 px-4 hover:bg-gray-600 rounded-md">Обо мне</a>
+            <a href="#collections" class="block py-2 px-4 hover:bg-gray-600 rounded-md">Проекты</a>
+            <a href="#gallery" class="block py-2 px-4 hover:bg-gray-600 rounded-md">Галерея</a>
             <a href="#contacts" class="block py-2 px-4 hover:bg-gray-600 rounded-md">Контакты</a>
         </div>
     </header>
@@ -71,29 +73,58 @@
     <!-- Основное содержимое страницы -->
     <main class="pt-24 container mx-auto p-6">
         
-        <!-- Секция "Главная" -->
-        <section id="home" class="bg-white p-8 rounded-xl shadow-lg mb-8">
-            <h1 class="text-4xl font-bold mb-4">Добро пожаловать в моё портфолио!</h1>
-            <p class="text-lg text-gray-600">
-                Я — дизайнер одежды, и здесь вы можете познакомиться с моими коллекциями, эскизами и концепциями. Мне нравится создавать уникальные вещи, которые подчеркивают индивидуальность.
-            </p>
+        <!-- Секция "Обо мне" -->
+        <section id="about" class="bg-white p-8 rounded-xl shadow-lg mb-8">
+            <h2 class="text-3xl font-bold mb-6 text-center">Конструктор - модельер</h2>
+            <p class="text-lg text-gray-600 mb-4">Стремлюсь гармонично сочетать художественное видение и аналитическое мышление. Мой подход к работе - это комплексная система принципов, которая управляет каждым этапом создания изделия. Она отражает три фундаментальных аспекта: инженерную точность, этическую ответственность и стремление к функциональному совершенству. В современной индустрии моды, где границы между творчеством и технологиями стираются, моей ключевой задачей становится преобразование абстрактной идеи в осязаемый, функциональный и устойчивый продукт.</p>
+            <h3 class="text-2xl font-semibold mb-2">Специализация</h3>
+            <p class="text-gray-600 mb-4">Конструирование, моделирование и разработка лекал для женской, мужской и детской одежды.</p>
+            <h3 class="text-2xl font-semibold mb-2">Ключевые навыки</h3>
+            <ul class="list-disc list-inside text-gray-600">
+                <li>САПР: Grafis</li>
+                <li>3D Моделирование: CLO3D</li>
+                <li>CorelDraw</li>
+                <li>Illustrator</li>
+                <li>Создание Tech Packs</li>
+                <li>Работа с разными тканями</li>
+                <li>Технология пошива</li>
+                <li>Корректировка посадки</li>
+                <li>Градация лекал</li>
+            </ul>
         </section>
 
         <!-- Секция "Коллекции" -->
         <section id="collections" class="bg-white p-8 rounded-xl shadow-lg mb-8">
-            <h2 class="text-3xl font-bold mb-6 text-center">Коллекции</h2>
+            <h2 class="text-3xl font-bold mb-6 text-center">Проекты</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Карточка коллекции 1 -->
+                <!-- Обновленная карточка проекта 1 -->
                 <div class="bg-gray-50 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
-                    <h3 class="text-2xl font-semibold mb-2">Коллекция 'Весна-Лето 2024'</h3>
-                    <p class="text-gray-600">Коллекция, вдохновлённая лёгкостью летнего ветра и яркими красками полевых цветов. Использованы натуральные ткани и свободный крой.</p>
+                    <h3 class="text-2xl font-semibold mb-2">Платье в горошек (Проект 0951)</h3>
+                    <p class="text-gray-600">Детальный проект по созданию платья в горошек, включающий разработку лекал (PL-0951), моделирование передней и задней частей, а также верхнего воротника. Проект сочетает точный конструкторский подход и визуальное совершенство готового изделия.</p>
+                    <div class="mt-4 grid grid-cols-2 gap-4">
+                        <img src="горох перед.JPG" alt="Платье в горошек (вид спереди)" class="w-full h-auto rounded-lg shadow-md">
+                        <img src="горох спинка.JPG" alt="Платье в горошек (вид сзади)" class="w-full h-auto rounded-lg shadow-md">
+                        <img src="PL-0951 тех рисунок.jpg" alt="Технический рисунок платья PL-0951" class="col-span-2 w-full h-auto rounded-lg shadow-md">
+                    </div>
+                    <!-- Новое изображение лекал -->
+                    <div class="mt-4">
+                        <img src="PL-0951.JPG" alt="Лекала PL-0951" class="w-full h-auto rounded-lg shadow-md" style="transform: rotate(90deg); width: 100%;">
+                    </div>
                 </div>
-                <!-- Карточка коллекции 2 -->
+                <!-- Карточка проекта 2 -->
                 <div class="bg-gray-50 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
-                    <h3 class="text-2xl font-semibold mb-2">Коллекция 'Осень-Зима 2024'</h3>
-                    <p class="text-gray-600">Уютные и стильные образы для холодного времени года. Основное внимание уделено многослойности, тёплым материалам и глубоким оттенкам.</p>
+                    <h3 class="text-2xl font-semibold mb-2">Пальто с меховой отделкой (Проект 1526)</h3>
+                    <p class="text-gray-600">Проект по разработке и пошиву теплого пальто с меховой отделкой на капюшоне. Проект включает этапы от создания эскиза до пошива готового изделия, уделяя внимание деталям и качеству материалов.</p>
+                    <div class="mt-4 grid grid-cols-2 gap-4">
+                        <img src="03_1526 пальто меховой отделкой.jpg" alt="Пальто с меховой отделкой (вид спереди)" class="w-full h-auto rounded-lg shadow-md">
+                        <img src="04_1526 пальто с меховой отделкой.jpg" alt="Пальто с меховой отделкой (вид сзади)" class="w-full h-auto rounded-lg shadow-md">
+                    </div>
+                     <!-- Новое изображение лекал для второго проекта -->
+                     <div class="mt-4">
+                         <img src="01_1526.jpg" alt="Лекала пальто 1526" class="w-full h-auto rounded-lg shadow-md">
+                    </div>
                 </div>
-                <!-- Карточка коллекции 3 -->
+                <!-- Карточка проекта 3 -->
                 <div class="bg-gray-50 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
                     <h3 class="text-2xl font-semibold mb-2">Проект 'Свадебное платье'</h3>
                     <p class="text-gray-600">Эксклюзивный дизайн свадебного платья, созданный на заказ. Сочетание классических элементов и современных деталей для уникального образа.</p>
@@ -101,27 +132,27 @@
             </div>
         </section>
 
-        <!-- Секция "Эскизы" -->
-        <section id="sketches" class="bg-white p-8 rounded-xl shadow-lg mb-8">
-            <h2 class="text-3xl font-bold mb-6 text-center">Эскизы и работы</h2>
+        <!-- Секция "Галерея" -->
+        <section id="gallery" class="bg-white p-8 rounded-xl shadow-lg mb-8">
+            <h2 class="text-3xl font-bold mb-6 text-center">Галерея</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <!-- Элемент галлереи 1 - используем относительный путь -->
+                <!-- Элемент галлереи 1 -->
                 <div class="rounded-lg overflow-hidden shadow-md">
                     <img src="10 перед.jpg" alt="Платье цвета хаки" class="w-full h-auto object-cover transition-transform transform hover:scale-110">
                 </div>
-                <!-- Элемент галлереи 2 - используем относительный путь -->
+                <!-- Элемент галлереи 2 -->
                 <div class="rounded-lg overflow-hidden shadow-md">
                     <img src="4 фото перед.jpg" alt="Белое платье с узором" class="w-full h-auto object-cover transition-transform transform hover:scale-110">
                 </div>
-                <!-- Элемент галлереи 3 - используем относительный путь -->
+                <!-- Элемент галлереи 3 -->
                 <div class="rounded-lg overflow-hidden shadow-md">
                     <img src="3 фото перед.jpg" alt="Тёмное платье в горошек" class="w-full h-auto object-cover transition-transform transform hover:scale-110">
                 </div>
-                <!-- Элемент галлереи 4 - используем относительный путь -->
+                <!-- Элемент галлереи 4 -->
                 <div class="rounded-lg overflow-hidden shadow-md">
                     <img src="4.jpg" alt="Эскиз платья" class="w-full h-auto object-cover transition-transform transform hover:scale-110">
                 </div>
-                <!-- Элемент галлереи 5 - используем относительный путь -->
+                <!-- Элемент галлереи 5 -->
                 <div class="rounded-lg overflow-hidden shadow-md">
                     <img src="01_1526 пальто с меховой отделкой.jpg" alt="Пальто с меховой отделкой" class="w-full h-auto object-cover transition-transform transform hover:scale-110">
                 </div>
@@ -183,7 +214,7 @@
 
     <!-- Подвал (футер) -->
     <footer class="bg-gray-800 text-white text-center p-4 mt-8 rounded-t-lg">
-        <p>&copy; 2024 Имя Фамилия. Все права защищены.</p>
+        <p>&copy; 2024 Лара Дергачева. Все права защищены.</p>
     </footer>
 
     <script>
