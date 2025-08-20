@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио дизайнера одежды</title>
+    <!-- Подключаем Tailwind CSS для стилизации -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Подключаем шрифт Inter -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap">
+    <style>
+        /* Дополнительные стили для плавного скролла при клике на якоря */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Стили для навигации при прокрутке */
+        .nav-links a.active {
+            font-weight: bold;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-thickness: 2px;
+            color: #3B82F6; /* Цвет для активной ссылки */
+        }
+        /* Стили для кнопки "Наверх" */
+        #back-to-top {
+            display: none; /* Скрываем по умолчанию */
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            background-color: #3B82F6;
+            color: white;
+            padding: 0.75rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        #back-to-top:hover {
+            background-color: #2563EB;
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 font-inter">
+
+    <!-- Навигационная панель -->
+    <header class="bg-gray-800 text-white p-4 fixed top-0 left-0 w-full z-10 shadow-lg rounded-b-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold">Имя Фамилия Дизайнер</a>
+            <nav class="hidden md:flex space-x-6 nav-links">
+                <a href="#collections" class="hover:text-gray-300 transition duration-300">Коллекции</a>
+                <a href="#sketches" class="hover:text-gray-300 transition duration-300">Эскизы</a>
+                <a href="#contacts" class="hover:text-gray-300 transition duration-300">Контакты</a>
+            </nav>
+            <!-- Мобильное меню (гамбургер-иконка) -->
+            <button id="menu-button" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Выпадающее меню для мобильных устройств -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-700 mt-4 rounded-md">
+            <a href="#collections" class="block py-2 px-4 hover:bg-gray-600 rounded-md">Коллекции</a>
+            <a href="#sketches" class="block py-2 px-4 hover:bg-gray-600 rounded-md">Эскизы</a>
+            <a href="#contacts" class="block py-2 px-4 hover:bg-gray-600 rounded-md">Контакты</a>
+        </div>
+    </header>
+
+    <!-- Основное содержимое страницы -->
+    <main class="pt-24 container mx-auto p-6">
+        
+        <!-- Секция "Главная" -->
+        <section id="home" class="bg-white p-8 rounded-xl shadow-lg mb-8">
+            <h1 class="text-4xl font-bold mb-4">Добро пожаловать в моё портфолио!</h1>
+            <p class="text-lg text-gray-600">
+                Я — дизайнер одежды, и здесь вы можете познакомиться с моими коллекциями, эскизами и концепциями. Мне нравится создавать уникальные вещи, которые подчеркивают индивидуальность.
+            </p>
+        </section>
+
+        <!-- Секция "Коллекции" -->
+        <section id="collections" class="bg-white p-8 rounded-xl shadow-lg mb-8">
+            <h2 class="text-3xl font-bold mb-6 text-center">Коллекции</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Карточка коллекции 1 -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                    <h3 class="text-2xl font-semibold mb-2">Коллекция 'Весна-Лето 2024'</h3>
+                    <p class="text-gray-600">Коллекция, вдохновлённая лёгкостью летнего ветра и яркими красками полевых цветов. Использованы натуральные ткани и свободный крой.</p>
+                </div>
+                <!-- Карточка коллекции 2 -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                    <h3 class="text-2xl font-semibold mb-2">Коллекция 'Осень-Зима 2024'</h3>
+                    <p class="text-gray-600">Уютные и стильные образы для холодного времени года. Основное внимание уделено многослойности, тёплым материалам и глубоким оттенкам.</p>
+                </div>
+                <!-- Карточка коллекции 3 -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                    <h3 class="text-2xl font-semibold mb-2">Проект 'Свадебное платье'</h3>
+                    <p class="text-gray-600">Эксклюзивный дизайн свадебного платья, созданный на заказ. Сочетание классических элементов и современных деталей для уникального образа.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Эскизы" -->
+        <section id="sketches" class="bg-white p-8 rounded-xl shadow-lg mb-8">
+            <h2 class="text-3xl font-bold mb-6 text-center">Эскизы и работы</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Элемент галлереи 1 - используем относительный путь -->
+                <div class="rounded-lg overflow-hidden shadow-md">
+                    <img src="10 перед.jpg" alt="Платье цвета хаки" class="w-full h-auto object-cover transition-transform transform hover:scale-110">
+                </div>
+                <!-- Элемент галлереи 2 - используем относительный путь -->
+                <div class="rounded-lg overflow-hidden shadow-md">
+                    <img src="4 фото перед.jpg" alt="Белое платье с узором" class="w-full h-auto object-cover transition-transform transform hover:scale-110">
+                </div>
+                <!-- Элемент галлереи 3 - используем относительный путь -->
+                <div class="rounded-lg overflow-hidden shadow-md">
+                    <img src="3 фото перед.jpg" alt="Тёмное платье в горошек" class="w-full h-auto object-cover transition-transform transform hover:scale-110">
+                </div>
+                <!-- Элемент галлереи 4 - используем относительный путь -->
+                <div class="rounded-lg overflow-hidden shadow-md">
+                    <img src="4.jpg" alt="Эскиз платья" class="w-full h-auto object-cover transition-transform transform hover:scale-110">
+                </div>
+                <!-- Элемент галлереи 5 - используем относительный путь -->
+                <div class="rounded-lg overflow-hidden shadow-md">
+                    <img src="01_1526 пальто с меховой отделкой.jpg" alt="Пальто с меховой отделкой" class="w-full h-auto object-cover transition-transform transform hover:scale-110">
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Контакты" -->
+        <section id="contacts" class="bg-white p-8 rounded-xl shadow-lg mb-8">
+            <h2 class="text-3xl font-bold mb-6 text-center">Свяжитесь со мной</h2>
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- Контактная информация -->
+                <div class="md:w-1/2">
+                    <p class="text-lg mb-4">Готов обсудить сотрудничество или индивидуальный заказ. Вы можете связаться со мной по контактам ниже или через форму.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                            <span class="text-gray-600">email@example.com</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 9a1 1 0 100 2h4a1 1 0 100-2H8z" clip-rule="evenodd"></path></svg>
+                            <span class="text-gray-600">+1 234 567 890</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                            <span class="text-gray-600">123 Улица Пример, Город, Страна</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Форма обратной связи -->
+                <div class="md:w-1/2">
+                    <form class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Имя</label>
+                            <input type="text" id="name" name="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700">Сообщение</label>
+                            <textarea id="message" name="message" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"></textarea>
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Отправить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Кнопка "Наверх" -->
+    <button id="back-to-top" title="Наверх">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
+    </button>
+
+    <!-- Подвал (футер) -->
+    <footer class="bg-gray-800 text-white text-center p-4 mt-8 rounded-t-lg">
+        <p>&copy; 2024 Имя Фамилия. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Получаем ссылки на элементы
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
+        const sections = document.querySelectorAll('section');
+        const backToTopBtn = document.getElementById('back-to-top');
+
+        // JavaScript для управления мобильным меню
+        // При клике на кнопку-гамбургер, показываем или скрываем меню
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // При клике на любую ссылку в мобильном меню, скрываем меню
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // JavaScript для подсветки активного раздела при прокрутке
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            // Проходим по всем секциям, чтобы определить текущую
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150; // Смещение для более точного определения
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            // Удаляем класс 'active' со всех ссылок
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            // Добавляем класс 'active' к текущей ссылке в навигации
+            navLinks.forEach(link => {
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Показываем или скрываем кнопку "Наверх"
+            if (window.scrollY > 300) {
+                backToTopBtn.style.display = 'block';
+            } else {
+                backToTopBtn.style.display = 'none';
+            }
+        });
+
+        // JavaScript для плавного скролла к началу страницы при клике на кнопку "Наверх"
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+    </script>
+</body>
+</html>
