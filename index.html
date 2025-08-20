@@ -1,357 +1,243 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Портфолио конструктора одежды - [Ваше Имя]</title>
+    <title>Портфолио дизайнера одежды</title>
+    <!-- Подключаем Tailwind CSS для стилизации -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Warm Neutrals -->
-    <!-- Application Structure Plan: A single-page application with a sticky top navigation bar for "Обо мне", "Проекты", "Контакты". The "Проекты" section features an interactive grid. Clicking a project opens a modal window with a tabbed interface to showcase different stages (drawings, patterns, photos). This structure allows potential employers to quickly navigate to the most important content (the projects) and explore the constructor's process in a structured, engaging way, rather than scrolling through a long, static page. -->
-    <!-- Visualization & Content Choices: Report Info -> Goal -> Presentation -> Interaction -> Justification. 1. Author's Skills -> Inform -> Styled Tags -> None -> Better visual separation and scannability than a simple list. 2. Project Collection -> Showcase portfolio -> Interactive Grid/Modal -> Click to open project details -> Avoids information overload, allows users to focus on one project at a time. 3. Project Stages (drawings, patterns, photos) -> Detail the construction process -> Tabbed content within the modal -> Click tabs to switch views -> Creates a clear, step-by-step narrative of the constructor's workflow, which is the core of their expertise. All visuals are placeholders, confirming NO SVG/Mermaid. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <!-- Подключаем шрифт Inter -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F5F5F4; /* stone-100 */
-            color: #292524; /* stone-800 */
+        /* Дополнительные стили для плавного скролла при клике на якоря */
+        html {
+            scroll-behavior: smooth;
         }
-        .nav-link {
-            transition: color 0.3s, border-bottom-color 0.3s;
-            border-bottom: 2px solid transparent;
+        /* Стили для навигации при прокрутке */
+        .nav-links a.active {
+            font-weight: bold;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-thickness: 2px;
+            color: #3B82F6; /* Цвет для активной ссылки */
         }
-        .nav-link:hover, .nav-link.active {
-            color: #0c0a09; /* stone-950 */
-            border-bottom-color: #708090; /* slate-500 - Accent */
-        }
-        .skill-tag {
-            background-color: #E7E5E4; /* stone-200 */
-            color: #57534E; /* stone-600 */
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .skill-tag:hover {
-            background-color: #708090; /* slate-500 */
-            color: #ffffff;
-        }
-        .project-card {
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-        }
-        .modal {
-            display: none;
-            animation: fadeIn 0.3s ease-out;
-        }
-        .modal-content {
-            animation: slideUp 0.4s ease-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        .modal-tab {
+        /* Стили для кнопки "Наверх" */
+        #back-to-top {
+            display: none; /* Скрываем по умолчанию */
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
             cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
-            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease-in-out;
+            background-color: #3B82F6;
+            color: white;
+            padding: 0.75rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .modal-tab.active {
-            border-bottom-color: #708090; /* slate-500 */
-            color: #0c0a09; /* stone-950 */
-            font-weight: 500;
-        }
-        .modal-tab-content {
-            display: none;
-        }
-        .modal-tab-content.active {
-            display: block;
+        #back-to-top:hover {
+            background-color: #2563EB;
+            transform: translateY(-4px);
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="bg-gray-100 text-gray-800 font-inter">
 
-    <!-- Header & Navigation -->
-    <header id="header" class="bg-stone-100/80 backdrop-blur-md sticky top-0 z-40 shadow-sm">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 class="text-xl md:text-2xl font-bold text-stone-900">[Ваше Имя]</h1>
-            <nav class="hidden md:flex space-x-8">
-                <a href="#about" class="nav-link text-stone-600 font-medium pb-1">Обо мне</a>
-                <a href="#projects" class="nav-link text-stone-600 font-medium pb-1">Проекты</a>
-                <a href="#contact" class="nav-link text-stone-600 font-medium pb-1">Контакты</a>
+    <!-- Навигационная панель -->
+    <header class="bg-gray-800 text-white p-4 fixed top-0 left-0 w-full z-10 shadow-lg rounded-b-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold">Имя Фамилия Дизайнер</a>
+            <nav class="hidden md:flex space-x-6 nav-links">
+                <a href="#collections" class="hover:text-gray-300 transition duration-300">Коллекции</a>
+                <a href="#sketches" class="hover:text-gray-300 transition duration-300">Эскизы</a>
+                <a href="#contacts" class="hover:text-gray-300 transition duration-300">Контакты</a>
             </nav>
-            <button id="mobile-menu-button" class="md:hidden text-stone-800">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            <!-- Мобильное меню (гамбургер-иконка) -->
+            <button id="menu-button" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
             </button>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden">
-            <a href="#about" class="block py-2 px-6 text-stone-700 hover:bg-stone-200">Обо мне</a>
-            <a href="#projects" class="block py-2 px-6 text-stone-700 hover:bg-stone-200">Проекты</a>
-            <a href="#contact" class="block py-2 px-6 text-stone-700 hover:bg-stone-200">Контакты</a>
+        <!-- Выпадающее меню для мобильных устройств -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-700 mt-4 rounded-md">
+            <a href="#collections" class="block py-2 px-4 hover:bg-gray-600 rounded-md">Коллекции</a>
+            <a href="#sketches" class="block py-2 px-4 hover:bg-gray-600 rounded-md">Эскизы</a>
+            <a href="#contacts" class="block py-2 px-4 hover:bg-gray-600 rounded-md">Контакты</a>
         </div>
     </header>
 
-    <main class="container mx-auto px-6 py-12">
-        <!-- About Section -->
-        <section id="about" class="mb-24 scroll-mt-24">
-            <h2 class="text-3xl font-bold text-center mb-4">Конструктор одежды</h2>
-            <p class="max-w-3xl mx-auto text-center text-stone-600 mb-12">
-                Здесь вы можете кратко описать свой подход к работе, свою философию как конструктора. Например: "Я превращаю творческие идеи дизайнеров в безупречно скроенные и качественно сшитые изделия, уделяя максимум внимания деталям, посадке и технологии производства."
+    <!-- Основное содержимое страницы -->
+    <main class="pt-24 container mx-auto p-6">
+        
+        <!-- Секция "Главная" -->
+        <section id="home" class="bg-white p-8 rounded-xl shadow-lg mb-8">
+            <h1 class="text-4xl font-bold mb-4">Добро пожаловать в моё портфолио!</h1>
+            <p class="text-lg text-gray-600">
+                Я — дизайнер одежды, и здесь вы можете познакомиться с моими коллекциями, эскизами и концепциями. Мне нравится создавать уникальные вещи, которые подчеркивают индивидуальность.
             </p>
-            <div class="bg-white rounded-lg shadow-md p-8 md:p-10 grid md:grid-cols-3 gap-8">
-                <div class="md:col-span-1">
-                    <h3 class="text-xl font-bold mb-4">Специализация</h3>
-                    <p class="text-stone-600">Конструирование, моделирование и разработка лекал для женской, мужской и детской одежды.</p>
-                    <h3 class="text-xl font-bold mt-6 mb-4">Опыт работы</h3>
-                    <p class="text-stone-600">[Кратко опишите ваш опыт работы: количество лет, основные проекты, достижения].</p>
+        </section>
+
+        <!-- Секция "Коллекции" -->
+        <section id="collections" class="bg-white p-8 rounded-xl shadow-lg mb-8">
+            <h2 class="text-3xl font-bold mb-6 text-center">Коллекции</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Карточка коллекции 1 -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                    <h3 class="text-2xl font-semibold mb-2">Коллекция 'Весна-Лето 2024'</h3>
+                    <p class="text-gray-600">Коллекция, вдохновлённая лёгкостью летнего ветра и яркими красками полевых цветов. Использованы натуральные ткани и свободный крой.</p>
                 </div>
-                <div class="md:col-span-2">
-                    <h3 class="text-xl font-bold mb-4">Ключевые навыки</h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="skill-tag py-2 px-4 rounded-full text-sm font-medium">Ручное конструирование</span>
-                        <span class="skill-tag py-2 px-4 rounded-full text-sm font-medium">САПР: Gerber / Optitex</span>
-                        <span class="skill-tag py-2 px-4 rounded-full text-sm font-medium">3D Моделирование: CLO3D</span>
-                        <span class="skill-tag py-2 px-4 rounded-full text-sm font-medium">Создание Tech Packs</span>
-                        <span class="skill-tag py-2 px-4 rounded-full text-sm font-medium">Работа с разными тканями</span>
-                        <span class="skill-tag py-2 px-4 rounded-full text-sm font-medium">Технология пошива</span>
-                        <span class="skill-tag py-2 px-4 rounded-full text-sm font-medium">Корректировка посадки</span>
-                        <span class="skill-tag py-2 px-4 rounded-full text-sm font-medium">Градация лекал</span>
-                    </div>
+                <!-- Карточка коллекции 2 -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                    <h3 class="text-2xl font-semibold mb-2">Коллекция 'Осень-Зима 2024'</h3>
+                    <p class="text-gray-600">Уютные и стильные образы для холодного времени года. Основное внимание уделено многослойности, тёплым материалам и глубоким оттенкам.</p>
+                </div>
+                <!-- Карточка коллекции 3 -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                    <h3 class="text-2xl font-semibold mb-2">Проект 'Свадебное платье'</h3>
+                    <p class="text-gray-600">Эксклюзивный дизайн свадебного платья, созданный на заказ. Сочетание классических элементов и современных деталей для уникального образа.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Projects Section -->
-        <section id="projects" class="mb-24 scroll-mt-24">
-            <h2 class="text-3xl font-bold text-center mb-4">Мои проекты</h2>
-            <p class="max-w-3xl mx-auto text-center text-stone-600 mb-12">
-                Каждый проект — это история о превращении эскиза в реальное изделие. Здесь представлены примеры моей работы, демонстрирующие технический подход и внимание к деталям. Нажмите на проект, чтобы узнать больше.
-            </p>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project Card 1 -->
-                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" data-project-id="1">
-                    <img src="https://placehold.co/600x400/E7E5E4/57534E?text=Женский+пиджак" alt="Женский пиджак" class="w-full h-48 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/E7E5E4/57534E?text=Ошибка';">
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2">Женский пиджак сложного кроя</h3>
-                        <p class="text-stone-600 text-sm">Разработка лекал и технической документации для премиум-сегмента.</p>
-                    </div>
+        <!-- Секция "Эскизы" -->
+        <section id="sketches" class="bg-white p-8 rounded-xl shadow-lg mb-8">
+            <h2 class="text-3xl font-bold mb-6 text-center">Эскизы и работы</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Элемент галлереи 1 - заполнено загруженным фото -->
+                <div class="rounded-lg overflow-hidden shadow-md">
+                    <img src="uploaded:10 перед.jpg-03662671-6374-40ec-91ba-1292ac95afd5" alt="Платье цвета хаки" class="w-full h-auto object-cover transition-transform transform hover:scale-110">
                 </div>
-                <!-- Project Card 2 -->
-                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" data-project-id="2">
-                    <img src="https://placehold.co/600x400/E7E5E4/57534E?text=Мужские+брюки" alt="Мужские брюки" class="w-full h-48 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/E7E5E4/57534E?text=Ошибка';">
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2">Мужские брюки (Casual)</h3>
-                        <p class="text-stone-600 text-sm">Создание комфортной посадки и градация размеров для массового производства.</p>
-                    </div>
+                <!-- Элемент галлереи 2 - заполнено загруженным фото -->
+                <div class="rounded-lg overflow-hidden shadow-md">
+                    <img src="uploaded:4 фото перед.jpg-1f07a6a5-b78a-4edc-8912-ef4ede410402" alt="Белое платье с узором" class="w-full h-auto object-cover transition-transform transform hover:scale-110">
                 </div>
-                <!-- Add more project cards as needed -->
+                <!-- Элемент галлереи 3 - удален, так как было предоставлено 2 фото -->
+                <!-- Элемент галлереи 4 - удален, так как было предоставлено 2 фото -->
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="text-center scroll-mt-24">
-             <h2 class="text-3xl font-bold text-center mb-4">Связаться со мной</h2>
-            <p class="max-w-3xl mx-auto text-center text-stone-600 mb-8">
-                Я открыт для новых проектов и сотрудничества. Свяжитесь со мной удобным для вас способом.
-            </p>
-            <div class="inline-flex flex-col md:flex-row items-center gap-4 md:gap-8 bg-white p-8 rounded-lg shadow-md">
-                <div class="text-left">
-                    <p class="font-bold">Электронная почта:</p>
-                    <a href="mailto:your.email@example.com" class="text-slate-600 hover:text-slate-800">[Ваш адрес электронной почты]</a>
+        <!-- Секция "Контакты" -->
+        <section id="contacts" class="bg-white p-8 rounded-xl shadow-lg mb-8">
+            <h2 class="text-3xl font-bold mb-6 text-center">Свяжитесь со мной</h2>
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- Контактная информация -->
+                <div class="md:w-1/2">
+                    <p class="text-lg mb-4">Готов обсудить сотрудничество или индивидуальный заказ. Вы можете связаться со мной по контактам ниже или через форму.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                            <span class="text-gray-600">email@example.com</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 9a1 1 0 100 2h4a1 1 0 100-2H8z" clip-rule="evenodd"></path></svg>
+                            <span class="text-gray-600">+1 234 567 890</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                            <span class="text-gray-600">123 Улица Пример, Город, Страна</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="text-left">
-                    <p class="font-bold">Телефон:</p>
-                    <a href="tel:+70001234567" class="text-slate-600 hover:text-slate-800">[Ваш телефон]</a>
-                </div>
-                 <div class="text-left">
-                    <p class="font-bold">Портфолио онлайн:</p>
-                    <a href="#" class="text-slate-600 hover:text-slate-800">[Ссылка на Behance/сайт]</a>
+                
+                <!-- Форма обратной связи -->
+                <div class="md:w-1/2">
+                    <form class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Имя</label>
+                            <input type="text" id="name" name="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700">Сообщение</label>
+                            <textarea id="message" name="message" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"></textarea>
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Отправить</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
+
     </main>
 
-    <!-- Modal -->
-    <div id="project-modal" class="modal fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50">
-        <div class="modal-content bg-white rounded-lg shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col">
-            <div class="flex justify-between items-center p-4 border-b border-stone-200">
-                <h3 id="modal-title" class="text-2xl font-bold"></h3>
-                <button id="close-modal" class="text-stone-500 hover:text-stone-800 text-3xl">&times;</button>
-            </div>
-            <div class="p-6 flex-grow overflow-y-auto">
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="md:col-span-1">
-                        <h4 class="font-bold text-lg mb-2">Задача</h4>
-                        <p id="modal-task" class="text-stone-600 mb-4"></p>
-                        <h4 class="font-bold text-lg mb-2">Вызовы</h4>
-                        <p id="modal-challenges" class="text-stone-600"></p>
-                    </div>
-                    <div class="md:col-span-2">
-                        <div class="border-b border-stone-200 mb-4">
-                            <nav id="modal-tabs" class="-mb-px flex space-x-6" aria-label="Tabs">
-                                <!-- Tabs will be inserted here by JS -->
-                            </nav>
-                        </div>
-                        <div id="modal-tab-content-container">
-                            <!-- Tab content will be inserted here by JS -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Кнопка "Наверх" -->
+    <button id="back-to-top" title="Наверх">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
+    </button>
+
+    <!-- Подвал (футер) -->
+    <footer class="bg-gray-800 text-white text-center p-4 mt-8 rounded-t-lg">
+        <p>&copy; 2024 Имя Фамилия. Все права защищены.</p>
+    </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // --- Mobile Menu ---
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
+        // Получаем ссылки на элементы
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
+        const sections = document.querySelectorAll('section');
+        const backToTopBtn = document.getElementById('back-to-top');
 
-            // --- Smooth Scrolling & Active Nav Link ---
-            const navLinks = document.querySelectorAll('nav a');
-            const sections = document.querySelectorAll('section');
+        // JavaScript для управления мобильным меню
+        // При клике на кнопку-гамбургер, показываем или скрываем меню
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetId = link.getAttribute('href');
-                    const targetSection = document.querySelector(targetId);
-                    if (targetSection) {
-                        targetSection.scrollIntoView({ behavior: 'smooth' });
-                        if(mobileMenu.classList.contains('hidden') === false) {
-                            mobileMenu.classList.add('hidden');
-                        }
-                    }
-                });
-            });
-
-            window.addEventListener('scroll', () => {
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    if (pageYOffset >= sectionTop - 60) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').includes(current)) {
-                        link.classList.add('active');
-                    }
-                });
-            });
-
-            // --- Modal Logic ---
-            const projectData = {
-                '1': {
-                    title: 'Женский пиджак сложного кроя',
-                    task: 'Разработка лекал и технической документации для женского пиджака сложного кроя.',
-                    challenges: 'Обеспечение идеальной посадки по фигуре при сохранении сложной асимметричной формы. Работа с деликатной костюмной шерстью.',
-                    tabs: [
-                        { name: 'Тех. рисунки', content: '<p class="text-stone-600 mb-4">Чёткий и подробный технический эскиз, отражающий все элементы конструкции: рельефы, расположение карманов, тип воротника и застёжки.</p><img src="https://placehold.co/800x600/E7E5E4/57534E?text=Технический+рисунок" alt="Технический рисунок" class="w-full rounded-lg shadow-sm" onerror="this.onerror=null;this.src=\'https://placehold.co/800x600/E7E5E4/57534E?text=Ошибка\';"/>' },
-                        { name: 'Лекала', content: '<p class="text-stone-600 mb-4">Представлены основные детали лекал, демонстрирующие правильную разметку, припуски на швы и надсечки.</p><img src="https://placehold.co/800x600/E7E5E4/57534E?text=Рабочие+лекала" alt="Рабочие лекала" class="w-full rounded-lg shadow-sm" onerror="this.onerror=null;this.src=\'https://placehold.co/800x600/E7E5E4/57534E?text=Ошибка\';"/>' },
-                        { name: 'Готовое изделие', content: '<p class="text-stone-600 mb-4">Готовое изделие, которое точно соответствует разработанным лекалам и техническим требованиям. Обратите внимание на качество пошива и точную посадку.</p><img src="https://placehold.co/800x600/E7E5E4/57534E?text=Готовое+изделие" alt="Готовое изделие" class="w-full rounded-lg shadow-sm" onerror="this.onerror=null;this.src=\'https://placehold.co/800x600/E7E5E4/57534E?text=Ошибка\';"/>' }
-                    ]
-                },
-                '2': {
-                    title: 'Мужские брюки (Casual)',
-                    task: 'Разработка мужских брюк с использованием стрейч-хлопка и последующая градация размеров.',
-                    challenges: 'Обеспечение комфортной посадки, которая не сковывает движения, и создание точной градации для широкого размерного ряда.',
-                    tabs: [
-                        { name: 'Tech Pack', content: '<p class="text-stone-600 mb-4">Образец технического пакета, включающий в себя таблицу измерений, спецификации материалов и пошаговые инструкции по сборке изделия.</p><img src="https://placehold.co/800x600/E7E5E4/57534E?text=Tech+Pack" alt="Tech Pack" class="w-full rounded-lg shadow-sm" onerror="this.onerror=null;this.src=\'https://placehold.co/800x600/E7E5E4/57534E?text=Ошибка\';"/>' },
-                        { name: 'Примерки', content: '<p class="text-stone-600 mb-4">Демонстрация рабочего процесса и умения корректировать посадку на манекене. Это показывает внимательность к деталям.</p><img src="https://placehold.co/800x600/E7E5E4/57534E?text=Этапы+примерки" alt="Этапы примерки" class="w-full rounded-lg shadow-sm" onerror="this.onerror=null;this.src=\'https://placehold.co/800x600/E7E5E4/57534E?text=Ошибка\';"/>' },
-                        { name: 'Готовое изделие', content: '<p class="text-stone-600 mb-4">Финальный продукт, который отражает умение доводить проект до совершенства, учитывая все технические нюансы.</p><img src="https://placehold.co/800x600/E7E5E4/57534E?text=Готовые+брюки" alt="Готовые брюки" class="w-full rounded-lg shadow-sm" onerror="this.onerror=null;this.src=\'https://placehold.co/800x600/E7E5E4/57534E?text=Ошибка\';"/>' }
-                    ]
-                }
-            };
-
-            const modal = document.getElementById('project-modal');
-            const closeModalButton = document.getElementById('close-modal');
-            const projectCards = document.querySelectorAll('.project-card');
-
-            projectCards.forEach(card => {
-                card.addEventListener('click', () => {
-                    const projectId = card.dataset.projectId;
-                    const data = projectData[projectId];
-                    if (data) {
-                        openModal(data);
-                    }
-                });
-            });
-
-            function openModal(data) {
-                document.getElementById('modal-title').textContent = data.title;
-                document.getElementById('modal-task').textContent = data.task;
-                document.getElementById('modal-challenges').textContent = data.challenges;
-
-                const tabsContainer = document.getElementById('modal-tabs');
-                const contentContainer = document.getElementById('modal-tab-content-container');
-                tabsContainer.innerHTML = '';
-                contentContainer.innerHTML = '';
-
-                data.tabs.forEach((tab, index) => {
-                    const tabButton = document.createElement('button');
-                    tabButton.className = 'modal-tab py-2 px-1 text-stone-500';
-                    tabButton.textContent = tab.name;
-                    tabButton.dataset.tabIndex = index;
-                    tabsContainer.appendChild(tabButton);
-
-                    const tabContent = document.createElement('div');
-                    tabContent.className = 'modal-tab-content';
-                    tabContent.innerHTML = tab.content;
-                    tabContent.dataset.tabIndex = index;
-                    contentContainer.appendChild(tabContent);
-
-                    if (index === 0) {
-                        tabButton.classList.add('active');
-                        tabContent.classList.add('active');
-                    }
-                });
-                
-                tabsContainer.addEventListener('click', (e) => {
-                    if (e.target.matches('.modal-tab')) {
-                        const tabIndex = e.target.dataset.tabIndex;
-                        
-                        tabsContainer.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
-                        e.target.classList.add('active');
-
-                        contentContainer.querySelectorAll('.modal-tab-content').forEach(c => c.classList.remove('active'));
-                        contentContainer.querySelector(`.modal-tab-content[data-tab-index="${tabIndex}"]`).classList.add('active');
-                    }
-                });
-
-                modal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeModal() {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-
-            closeModalButton.addEventListener('click', closeModal);
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    closeModal();
-                }
-            });
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    closeModal();
-                }
+        // При клике на любую ссылку в мобильном меню, скрываем меню
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
             });
         });
+
+        // JavaScript для подсветки активного раздела при прокрутке
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            // Проходим по всем секциям, чтобы определить текущую
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150; // Смещение для более точного определения
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            // Удаляем класс 'active' со всех ссылок
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            // Добавляем класс 'active' к текущей ссылке в навигации
+            navLinks.forEach(link => {
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Показываем или скрываем кнопку "Наверх"
+            if (window.scrollY > 300) {
+                backToTopBtn.style.display = 'block';
+            } else {
+                backToTopBtn.style.display = 'none';
+            }
+        });
+
+        // JavaScript для плавного скролла к началу страницы при клике на кнопку "Наверх"
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
     </script>
 </body>
 </html>
